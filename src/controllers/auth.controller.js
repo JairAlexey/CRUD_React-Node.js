@@ -30,10 +30,36 @@ export const signin = async (req, res) => {
         });
     }
     catch (error) {
-        res.status(500).send({ message: 'An error ocurred while trying to create the user' });
+        res.status(500).send({ message: error.message });
     }
 }
 
 export const login = async (req, res) => {
+    const { email, password } = req.body;
 
+    try {
+        // Buscamos el usuario en la base de datos
+        const userFound = await User.findOne({ email });
+        if (!userFound) {
+            return res.status(400).json({ message: 'Usuario no encontrado' });
+        }
+
+        const passwordMatch = await bcrypt.compare(password, userFound.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ message: 'Contraseña incorrecta' });
+        }
+        const token = await createToken({ id: userFound._id });
+        
+        // Enviamos la respuesta al cliente
+        res.cookie('token', token);
+        res.json({
+            id: userFound._id,
+            username: userFound.username,
+            email: userFound.email,
+        });
+    }
+    catch (error) {
+        console.error('Error en login:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
 }
