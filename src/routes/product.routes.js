@@ -10,4 +10,5 @@ router.post('/products', authRequired, productCtrl.createProduct)
 router.delete('/products/:id', authRequired, productCtrl.deleteProduct)
 router.put('/products/:id', authRequired, productCtrl.updateProduct)
 
+
 export default router;
