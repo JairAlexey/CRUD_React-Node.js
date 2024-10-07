@@ -1,34 +1,34 @@
 import { useProducts } from "../context/ProductsContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 function ProductCard({ product }) {
-
     const { deleteProduct } = useProducts();
+    const navigate = useNavigate();
 
+    const handleEdit = () => {
+        navigate(`/products/${product._id}`);
+    };
 
     return (
         <div className="product-card">
             <h1>{product.name}</h1>
-            <p>Descripcion: {product.description}</p>
+            <p>Descripción: {product.description}</p>
             <p>Precio: {product.price}$</p>
-            <p>Categoria: {product.category}</p>
+            <p>Categoría: {product.category}</p>
             <div className="button-container">
-                <button className="button-editar">
-                    <Link
-                        to={`/products/${product._id}`}
-                    >Editar
-                    </Link> 
-                </button>
+                <button className="button-editar" onClick={handleEdit}><FaEdit /> Editar</button>
                 <button
                     className="button-eliminar"
                     onClick={() => {
                         deleteProduct(product._id);
                     }}
                 >
-                    Eliminar</button>
+                    <FaTrash /> Eliminar
+                </button>
             </div>
         </div>
-    )
+    );
 }
 
 export default ProductCard;

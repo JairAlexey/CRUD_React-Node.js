@@ -55,7 +55,6 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     }
 
-
     useEffect(() => {
         if (errors.length > 0) {
             const timer = setTimeout(() => {

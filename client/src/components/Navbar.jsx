@@ -1,24 +1,28 @@
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { FaHome } from 'react-icons/fa';
 
 function Navbar() {
 
-    const { isAuthenticated, logout, user} = useAuth();
+    const { isAuthenticated, logout, user } = useAuth();
+    const navigate = useNavigate();
     return (
         <nav>
-            <h1>CrudProductos</h1>
+            <a href="/"><FaHome style={{ fontSize: '24px' }} /></a> 
             <ul>
                 {isAuthenticated ? (
                 <>
                     <li>
-                        <a href="/add-products">Nuevo producto</a>
-                        <a href="/" onClick={() => {logout();}}>Logout</a>
+                        <a href="/products">Productos</a>
+                        <button onClick={() => navigate('/add-products')}>Nuevo producto</button>
+                        <a href="/login" onClick={() => {logout();}}>Logout</a>
                     </li>
                 </>
                 ) : (
                 <>
                     <li>
-                        <a href="/login">Login</a>
-                        <a href="/signup">Signup</a>
+                        <a href="/login">Iniciar Sesión</a>
+                        <a href="/signup">Registrarse</a>
                     </li>
                 </>
                 )}

@@ -14,12 +14,12 @@ function ProductsPage() {
     }
 
     return (
-        <div className="grid">
+            <div className="grid">
             {
             products.map(product => (
                 <ProductCard product={product} key={product._id}></ProductCard>
             ))}
-        </div>
+            </div>
     )
 }
 

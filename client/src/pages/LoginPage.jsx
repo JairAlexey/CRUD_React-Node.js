@@ -1,12 +1,10 @@
-import {useForm} from 'react-hook-form';
-import {useAuth} from '../context/AuthContext';
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../context/AuthContext';
 import { useEffect } from 'react';
 
 function LoginPage() {
-    const {register, handleSubmit, formState:{
-        errors
-    }} = useForm(); 
-    const {login, errors: loginErrors, isAuthenticated } = useAuth();
+    const { register, handleSubmit, formState: { errors } } = useForm(); 
+    const { login, errors: loginErrors, isAuthenticated } = useAuth();
 
     const onSubmit = handleSubmit((data) => {
         login(data);
@@ -19,31 +17,48 @@ function LoginPage() {
     }, [isAuthenticated]);
 
     return (
-        <div className="container">
-            {
-                loginErrors.map((error, i) => (
-                    <div key={i}>{error}</div>  
-                ))
-            }
-            <h1>Iniciar Sesion</h1>
+        <div className="login-container">
+            {/* Mostrar errores del backend */}
+            {loginErrors.length > 0 && (
+                <div className="error-message">
+                    {loginErrors.map((error, i) => (
+                        <p key={i}>{error}</p>
+                    ))}
+                </div>
+            )}
+            <h1>Iniciar Sesión</h1>
             <form onSubmit={onSubmit}>
-                <input type='email'
-                    placeholder='Correo electrónico'
-                    {...register('email', { required: true })}
-                />
-                {
-                    errors.email && <span>El correo electrónico es requerido</span>
-                }
-                <input type='password'
-                    placeholder='Contraseña'
-                    {...register('password', { required: true, minLength: 6 })}
-                />
-                {
-                    errors.password && <span>La contraseña es requerida y debe tener al menos 6 caracteres</span>
-                }
+                <div className="form-group">
+                    <input 
+                        type='email' 
+                        placeholder='Correo electrónico' 
+                        {...register('email', { required: 'El correo electrónico es requerido' })}
+                    />
+                    {/* Mostrar errores de validación del frontend */}
+                    {errors.email && (
+                        <div className="error-message">
+                            <p>{errors.email.message}</p>
+                        </div>
+                    )}
+                </div>
+                <div className="form-group">
+                    <input 
+                        type='password' 
+                        placeholder='Contraseña' 
+                        {...register('password', { 
+                            required: 'La contraseña es requerida', 
+                            minLength: { value: 6, message: 'Debe tener al menos 6 caracteres' }
+                        })}
+                    />
+                    {errors.password && (
+                        <div className="error-message">
+                            <p>{errors.password.message}</p>
+                        </div>
+                    )}
+                </div>
                 <button type='submit'>Iniciar sesión</button>
             </form>
-            <p>
+            <p className="signup-prompt">
                 No tienes cuenta? <a href="/signup">Regístrate</a>
             </p>
         </div>
