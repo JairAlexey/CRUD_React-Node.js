@@ -118,7 +118,6 @@ Puedes cerrar sesión en cualquier momento haciendo clic en el botón de "Cerrar
 
 1.  **Despliegue en la nube**: Configurar el despliegue en un servicio como Heroku o Vercel.
 2.  **Mejoras de UI/UX**: Estilizar mejor las páginas y hacerlas más responsivas.
-3.  **Validación de datos**: Añadir validaciones de campos tanto en el frontend como en el backend.
 
 ---
 
