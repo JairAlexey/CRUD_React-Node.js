@@ -126,11 +126,74 @@ CRUD_React-Node.js/
 └── README.md
 ```
 
-##Instalación
-- Clona este repositorio en tu máquina local:
-    git clone https://github.com/JairAlexey/CRUD_React-Node.js.git
-    cd CRUD_React-Node.js
-- Instala las dependencias para el backend:
-    cd src
-    npm install
+## Instalación
+
+1. Clona este repositorio en tu máquina local:
+
+   ```bash
+   git clone https://github.com/JairAlexey/CRUD_React-Node.js.git
+   cd CRUD_React-Node.js
+   ```
+
+2. Instala las dependencias para el backend:
+
+   ```bash
+   cd src
+   npm install
+   ```
+
+3. Configura la base de datos MongoDB. Asegúrate de tener una instancia local de MongoDB ejecutándose y actualiza la URI de conexión en el archivo `src/db.js` si es necesario:
+
+   ```js
+   mongoose.connect('mongodb://localhost/crudDB');
+   ```
+
+4. Inicia el servidor backend:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Abre una nueva terminal y navega al directorio `client` para instalar las dependencias del frontend:
+
+   ```bash
+   cd client
+   npm install
+   ```
+
+6. Inicia el frontend:
+
+   ```bash
+   npm run dev
+   ```
+
+7. Abre tu navegador en [http://localhost:5173](http://localhost:5173) para ver la aplicación en funcionamiento.
+
+## Uso
+
+### Registro e inicio de sesión
+
+1. Dirígete a la página de registro para crear una cuenta nueva.
+2. Después de registrarte, inicia sesión con las credenciales creadas.
+3. Al iniciar sesión, serás redirigido a la página de productos, donde podrás gestionar tus productos.
+
+### Gestión de productos
+
+- **Crear producto**: Navega a la página de "Añadir producto" y completa el formulario.
+- **Editar producto**: Haz clic en un producto existente para editarlo.
+- **Eliminar producto**: Los productos pueden eliminarse desde la vista de productos.
+
+### Cerrar sesión
+
+Puedes cerrar sesión en cualquier momento haciendo clic en el botón de "Cerrar sesión" en el menú de navegación.
+
+## Próximos pasos
+
+1. **Despliegue en la nube**: Configurar el despliegue en un servicio como Heroku o Vercel.
+2. **Mejoras de UI/UX**: Estilizar mejor las páginas y hacerlas más responsivas.
+3. **Validación de datos**: Añadir validaciones de campos tanto en el frontend como en el backend.
+
+## Contribuciones
+
+Si deseas contribuir a este proyecto, realiza un fork del repositorio, crea una nueva rama con tus cambios y envía un pull request.
 
