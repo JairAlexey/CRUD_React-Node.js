@@ -124,3 +124,13 @@ CRUD_React-Node.js/
 │   ├── db.js             # Conexión a la base de datos MongoDB
 │   └── app.js            # Configuración y middlewares de Express
 └── README.md
+```
+
+##Instalación
+- Clona este repositorio en tu máquina local:
+    git clone https://github.com/JairAlexey/CRUD_React-Node.js.git
+    cd CRUD_React-Node.js
+- Instala las dependencias para el backend:
+    cd src
+    npm install
+
